@@ -1,0 +1,12 @@
+[package]
+name = "minigem"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gemini-parser = { path = "../parser" }
+rustls = { version = "0.20.2", features = ["dangerous_configuration"] }
+url = "2.2.2"
+webpki-roots = "0.22.2"
