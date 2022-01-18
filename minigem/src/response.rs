@@ -48,8 +48,6 @@ pub struct Lines<R> {
     is_preformatting: bool,
 }
 
-fn hehe() {}
-
 impl<R> Lines<R>
 where
     R: BufRead,
@@ -165,4 +163,10 @@ pub enum Line {
     Heading { level: usize, text: String },
     UnorderedListItem(String),
     Quote(String),
+}
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn test_parse() {}
 }
