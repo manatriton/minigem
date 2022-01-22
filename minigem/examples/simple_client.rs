@@ -1,18 +1,23 @@
-use minigem::Request;
-use std::borrow::Borrow;
+use minigem::{Lines, Request};
 use std::error;
-use std::io::{copy, stdout, Cursor};
 fn main() -> Result<(), Box<dyn error::Error>> {
-    let mut res = Request::new("gemini://gemini.circumlunar.space/").send()?;
-    let mut body = Vec::new();
+    let res = Request::new("gemini://gemini.circumlunar.space/").send()?;
 
-    res.body.read_to_end(&mut body)?;
+    println!("status: {:?}", res.status);
+    println!("meta: {:?}", res.meta);
 
-    let mut cursor = Cursor::new(body);
+    let lines = Lines::from(res.body);
 
-    cursor.set_position(0);
+    for line in lines {
+        let line = line?;
+        // println!("{:?}", line);
+    }
 
-    copy(&mut cursor, &mut stdout())?;
+    // let mut cursor = Cursor::new(body);
+
+    // cursor.set_position(0);
+
+    // copy(&mut cursor, &mut stdout())?;
 
     Ok(())
 }

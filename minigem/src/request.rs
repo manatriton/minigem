@@ -1,4 +1,7 @@
-use crate::{connection::Connection, Error, Response};
+use crate::{
+    connection::{Connection, GeminiStream},
+    Error, Response,
+};
 use url::Url;
 
 pub struct Request {
@@ -12,7 +15,7 @@ impl Request {
         }
     }
 
-    pub fn send(self) -> Result<Response, Error> {
+    pub fn send(self) -> Result<Response<GeminiStream>, Error> {
         let url = Url::parse(&self.url)?;
 
         if url.scheme() != "gemini" {

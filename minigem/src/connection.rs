@@ -18,7 +18,7 @@ impl Connection {
         Self { request }
     }
 
-    pub(crate) fn send(&mut self) -> Result<Response, Error> {
+    pub(crate) fn send(&mut self) -> Result<Response<GeminiStream>, Error> {
         let url = Url::parse(self.request.url.as_ref())?;
 
         // URL is parsed before send() is called; therefore, we can just unwrap.
@@ -28,7 +28,7 @@ impl Connection {
         let mut stream = connect(host, port)?;
         write!(stream, "{}\r\n", url.as_str())?;
 
-        Response::try_from_stream(stream)
+        Response::try_from_reader(stream)
     }
 }
 
