@@ -1,7 +1,7 @@
 use minigem::{Lines, Request};
 use std::error;
 fn main() -> Result<(), Box<dyn error::Error>> {
-    let res = Request::new("gemini://gemini.circumlunar.space/").send()?;
+    let res = Request::new("gemini://gemini.circumlunar.space").send()?;
 
     println!("status: {:?}", res.status);
     println!("meta: {:?}", res.meta);
@@ -10,7 +10,7 @@ fn main() -> Result<(), Box<dyn error::Error>> {
 
     for line in lines {
         let line = line?;
-        // println!("{:?}", line);
+        println!("{:?}", line);
     }
 
     // let mut cursor = Cursor::new(body);

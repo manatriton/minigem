@@ -232,6 +232,7 @@ where
                 level: Some(level),
             }))
         } else if buf.starts_with(b"* ") {
+            pos = 2;
             let slice = slice_next_line!(buf, &mut pos);
             Ok(Some(Line {
                 src,
