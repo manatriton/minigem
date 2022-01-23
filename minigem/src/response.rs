@@ -18,7 +18,7 @@ macro_rules! slice_next_whitespace {
     }};
 }
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum Status {
     Input = 10,
     SensitiveInput = 11,
