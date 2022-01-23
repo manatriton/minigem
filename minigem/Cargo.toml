@@ -7,6 +7,6 @@ edition = "2021"
 
 [dependencies]
 gemini-parser = { path = "../parser" }
-rustls = { version = "0.20.2", features = ["dangerous_configuration"] }
+rustls = { git = "https://github.com/manatriton/rustls", branch = "main", features = ["dangerous_configuration"] }
 url = "2.2.2"
 webpki-roots = "0.22.2"
