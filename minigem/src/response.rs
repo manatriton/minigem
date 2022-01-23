@@ -1,4 +1,5 @@
 use crate::Error;
+use std::fmt;
 use std::io::{self, BufRead, BufReader, Read};
 use std::str;
 
@@ -38,6 +39,31 @@ pub enum Status {
     ClientCertificateRequired = 60,
     CertificateNotAuthorised = 61,
     CertificateNotValid = 62,
+}
+
+impl fmt::Display for Status {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Status::Input => write!(f, "10 INPUT"),
+            Status::SensitiveInput => write!(f, "11 SENSITIVE INPUT"),
+            Status::Success => write!(f, "20 SUCCESS"),
+            Status::RedirectTemporary => write!(f, "30 REDIRECT - TEMPORARY"),
+            Status::RedirectPermanent => write!(f, "31 REDIRECT - PERMANENT"),
+            Status::TemporaryFailure => write!(f, "40 TEMPORARY FAILURE"),
+            Status::ServerUnavailable => write!(f, "41 SERVER UNAVAILABLE"),
+            Status::CGIError => write!(f, "42 CGI ERROR"),
+            Status::ProxyError => write!(f, "43 PROXY ERROR"),
+            Status::SlowDown => write!(f, "44 SLOW DOWN"),
+            Status::PermanentFailure => write!(f, "50 PERMANENT FAILURE"),
+            Status::NotFound => write!(f, "51 NOT FOUND"),
+            Status::Gone => write!(f, "52 GONE"),
+            Status::ProxyRequestRefused => write!(f, "53 PROXY REQUEST REFUSED"),
+            Status::BadRequest => write!(f, "50 BAD REQUEST"),
+            Status::ClientCertificateRequired => write!(f, "60 CLIENT CERTIFICATE REQUIRED"),
+            Status::CertificateNotAuthorised => write!(f, "61 CERTIFICATE NOT AUTHORISED"),
+            Status::CertificateNotValid => write!(f, "62 CERTIFICATE NOT VALID"),
+        }
+    }
 }
 
 pub struct Response<R> {
